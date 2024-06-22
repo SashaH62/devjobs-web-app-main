@@ -1,0 +1,15 @@
+.listingFooter {
+  background-color: var(--navColor);
+  padding: 1.5rem;
+  position: sticky;
+  bottom: 0;
+
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}

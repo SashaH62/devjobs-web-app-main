@@ -1,0 +1,25 @@
+.listingCard {
+  background-color: white;
+  border-radius: 6px;
+  padding: 3rem 2rem 2rem;
+  position: relative;
+
+  .imageContainer {
+    padding: 10px;
+    border-radius: 15px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: -25px;
+
+    img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  h4 {
+    color: var(--accentColor);
+  }
+}

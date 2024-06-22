@@ -1,26 +1,84 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const JobsContext = createContext();
 
+const BASE_URL = "http://localhost:3000";
+
+const initState = {
+  isLoading: false,
+  error: "",
+  jobListings: {},
+  filteredListings: {},
+  selectedListing: {},
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "loading":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "jobs/loaded":
+      return {
+        ...state,
+        isLoading: false,
+        jobListings: action.payload,
+        filteredListings: action.payload,
+        selectedListing: {},
+      };
+    case "job/loaded":
+      return {
+        ...state,
+        selectedListing: action.payload,
+        isLoading: false,
+      };
+    case "rejected":
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    default:
+      throw new Error("Unknown action type");
+  }
+}
+
 function JobListingProvider({ children }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [jobListings, setJobListings] = useState({});
+  const [
+    { isLoading, error, jobListings, filteredListings, selectedListing },
+    dispatch,
+  ] = useReducer(reducer, initState);
+
+  async function fetchJobs() {
+    dispatch({ type: "loading" });
+    try {
+      const res = await fetch(`${BASE_URL}/jobs`);
+      const data = await res.json();
+      dispatch({ type: "jobs/loaded", payload: data });
+    } catch (error) {
+      dispatch({ type: "rejected", payload: error });
+    }
+  }
+
+  async function getCurrentListing(id) {
+    dispatch({ type: "loading" });
+    try {
+      const res = await fetch(`${BASE_URL}/jobs/${id}`);
+      const data = await res.json();
+      dispatch({ type: "job/loaded", payload: data });
+    } catch (error) {
+      dispatch({ type: "rejected", payload: error });
+    }
+  }
 
   useEffect(() => {
-    async function fetchJobs() {
-      setIsLoading(true);
-      try {
-        const res = await fetch("http://localhost:3000/jobs");
-        const data = await res.json();
-        setJobListings(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     fetchJobs();
   }, []);
 
@@ -29,7 +87,10 @@ function JobListingProvider({ children }) {
       value={{
         isLoading,
         error,
-        jobListings,
+        filteredListings,
+        selectedListing,
+        dispatch,
+        getCurrentListing,
       }}
     >
       {children}

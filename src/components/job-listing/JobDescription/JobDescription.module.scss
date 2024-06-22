@@ -1,0 +1,29 @@
+.jobDescriptionContainer {
+  background-color: var(--navColor);
+  margin: 0 auto;
+  max-width: 730px;
+  border-radius: 6px;
+  padding: 2.5rem;
+
+  .descriptionHeader {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .location {
+      color: var(--accentColor);
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+
+  .genericDescriptionContainer {
+    padding-bottom: 2rem;
+
+    h3,
+    p {
+      padding-bottom: 1rem;
+    }
+  }
+}

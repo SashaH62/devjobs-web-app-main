@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
+@import "./assets/scss/generic/variables";
+@import "./assets/scss/generic/typography";
+@import "./assets/scss/generic/helper";
 
 :root {
   font-family: "Kumbh Sans", sans-serif;
@@ -12,4 +15,9 @@
 
 html {
   min-height: 100vh;
+  background-color: var(--backgroundColor);
+}
+
+a {
+  text-decoration: none;
 }

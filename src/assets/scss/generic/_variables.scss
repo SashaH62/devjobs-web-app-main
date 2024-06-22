@@ -1,0 +1,33 @@
+/*******************************
+            COLORS
+******************************/
+
+$violet: #5964e0;
+$light_violet: #939bf4;
+$dark_blue: #19202d;
+$midnight_blue: #121721;
+$white: #fff;
+$light_grey: #f4f6f8;
+$gray: #9daec2;
+$dark_grey: #6e8098;
+
+/*******************************
+          COLOR TOGGLE
+******************************/
+
+.light {
+  --backgroundColor: #f4f6f8;
+  --headingColor: #19202d;
+  --textColor: #6e8098;
+  --accentColor: #5964e0;
+  --buttonColor: #5964e0;
+  --navColor: #fff;
+}
+
+.dark {
+  --backgroundColor: $light_grey;
+  --headingColor: $dark_blue;
+  --textColor: $dark_grey;
+  --accentColor: $violet;
+  --buttonColor: $violet;
+}

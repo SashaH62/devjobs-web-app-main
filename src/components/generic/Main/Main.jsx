@@ -1,7 +1,11 @@
 import styles from "./Main.module.scss";
 
-function Main({ children }) {
-  return <main className={styles.containerMain}>{children}</main>;
+function Main({ type, children }) {
+  return (
+    <main className={`${styles.containerMain} ${type ? type : ""}`}>
+      {children}
+    </main>
+  );
 }
 
 export default Main;

@@ -1,4 +1,12 @@
 .containerMain {
   max-width: 1110px;
   margin: 0 auto;
+  padding: 4rem 0;
+}
+
+:global .containerJobListing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 4rem;
 }

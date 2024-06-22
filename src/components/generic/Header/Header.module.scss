@@ -1,0 +1,28 @@
+.header {
+  background-color: var(--accentColor);
+  background-image: url("/assets/desktop/bg-pattern-header.svg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  border-radius: 0 0 0 100px;
+  margin-bottom: 5rem;
+  flex-wrap: wrap;
+
+  nav {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    h1 {
+      color: var(--navColor);
+    }
+  }
+
+  .headerChildContainer {
+    margin-bottom: -135px;
+    width: 100%;
+  }
+}
