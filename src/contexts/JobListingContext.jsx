@@ -64,6 +64,7 @@ function JobListingProvider({ children }) {
       dispatch({ type: "jobs/loaded", payload: data });
     } catch (error) {
       dispatch({ type: "rejected", payload: error });
+      console.log(error);
     }
   }
 

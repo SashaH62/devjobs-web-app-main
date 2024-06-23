@@ -6,11 +6,12 @@ import { useJobs } from "../contexts/JobListingContext";
 import { useEffect } from "react";
 import JobDescription from "../components/job-listing/JobDescription/JobDescription";
 import Loader from "../components/generic/Loader/Loader";
+import GenericMessage from "../components/generic/GenericMessage/GenericMessage";
 import ListingFooter from "../components/job-listing/ListingFooter/ListingFooter";
 
 function JobPage() {
   const { id } = useParams();
-  const { getCurrentListing, selectedListing, isLoading } = useJobs();
+  const { getCurrentListing, selectedListing, isLoading, error } = useJobs();
 
   useEffect(() => {
     getCurrentListing(id);
@@ -18,14 +19,15 @@ function JobPage() {
 
   return (
     <>
+      <Header />
       {isLoading && <Loader />}
-
-      {!isLoading && selectedListing && (
+      {!isLoading && error && (
+        <GenericMessage>😣 Something went wrong. </GenericMessage>
+      )}
+      {!isLoading && !error && (
         <>
-          <Header>
-            <JobTitleCard />
-          </Header>
           <Main>
+            <JobTitleCard />
             <JobDescription />
           </Main>
           <ListingFooter />

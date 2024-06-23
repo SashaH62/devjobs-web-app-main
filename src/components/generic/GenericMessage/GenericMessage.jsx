@@ -1,7 +1,11 @@
-function GenericMessage({ chiildren }) {
+import Button from "../Button/Button";
+import styles from "./GenericMessage.module.scss";
+
+function GenericMessage({ children }) {
   return (
-    <div>
+    <div className={styles.genericMessageContainer}>
       <p>{children}</p>
+      <Button>Refresh 🔁</Button>
     </div>
   );
 }
