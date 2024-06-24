@@ -39,6 +39,11 @@ function reducer(state, action) {
         selectedListing: action.payload,
         isLoading: false,
       };
+    case "jobs/filtered":
+      return {
+        ...state,
+        filteredListings: action.payload,
+      };
     case "rejected":
       return {
         ...state,
@@ -64,7 +69,6 @@ function JobListingProvider({ children }) {
       dispatch({ type: "jobs/loaded", payload: data });
     } catch (error) {
       dispatch({ type: "rejected", payload: error });
-      console.log(error);
     }
   }
 
@@ -79,9 +83,38 @@ function JobListingProvider({ children }) {
     }
   }
 
-  useEffect(() => {
-    fetchJobs();
-  }, []);
+  function filterListings(generalQuery, locationQuery, contractQuery) {
+    if (!generalQuery && !locationQuery && !contractQuery) {
+      return jobListings;
+    }
+
+    let filteredResults = jobListings;
+
+    if (generalQuery) {
+      filteredResults = filteredResults.filter((listing) => {
+        return Object.values(listing).some((el) => {
+          if (typeof el === "string") {
+            return el.toLowerCase().includes(generalQuery.toLowerCase());
+          }
+          return false;
+        });
+      });
+    }
+
+    if (locationQuery) {
+      filteredResults = filteredResults.filter((listing) =>
+        listing.location.toLowerCase().includes(locationQuery.toLowerCase())
+      );
+    }
+
+    if (contractQuery) {
+      filteredResults = filteredResults.filter(
+        (listing) => listing.contract === "Full Time"
+      );
+    }
+
+    return filteredResults;
+  }
 
   return (
     <JobsContext.Provider
@@ -92,6 +125,8 @@ function JobListingProvider({ children }) {
         selectedListing,
         dispatch,
         getCurrentListing,
+        filterListings,
+        fetchJobs,
       }}
     >
       {children}
