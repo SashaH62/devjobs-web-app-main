@@ -2,7 +2,7 @@ import styles from "./Main.module.scss";
 
 function Main({ type, children }) {
   return (
-    <main className={`${styles.containerMain} ${type ? type : ""}`}>
+    <main className={`${styles.container} ${type ? type : ""}`}>
       {children}
     </main>
   );

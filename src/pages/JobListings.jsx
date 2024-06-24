@@ -6,13 +6,26 @@ import GenericMessage from "../components/generic/GenericMessage/GenericMessage"
 import { useJobs } from "../contexts/JobListingContext";
 import ListingFilterForm from "../components/job-listing/ListingFilterForm/ListingFilterForm";
 import { useEffect } from "react";
+import Button from "../components/generic/Button/Button";
+import JobListingGrid from "../components/job-listing/JobListingGrid/JobListingGrid";
 
 function JobListings() {
-  const { fetchJobs, filteredListings, isLoading, error } = useJobs();
+  const {
+    fetchJobs,
+    filteredListings,
+    isLoading,
+    numListings,
+    error,
+    dispatch,
+  } = useJobs();
 
   useEffect(() => {
     fetchJobs();
   }, []);
+
+  function handleLoadMore() {
+    dispatch({ type: "jobs/loadMore" });
+  }
 
   return (
     <>
@@ -31,13 +44,11 @@ function JobListings() {
       )}
 
       {!isLoading && !error && filteredListings.length && (
-        <Main type="containerJobListing">
-          {isLoading && <p>Loading...</p>}
-
-          {filteredListings.length > 0 &&
-            filteredListings.map((listing) => (
-              <ListingCard listing={listing} key={listing.id} />
-            ))}
+        <Main>
+          <JobListingGrid />
+          {numListings < filteredListings.length && (
+            <Button onClick={handleLoadMore}>Load More</Button>
+          )}
         </Main>
       )}
     </>

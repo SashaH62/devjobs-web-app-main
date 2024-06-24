@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const JobsContext = createContext();
 
@@ -16,6 +10,7 @@ const initState = {
   jobListings: {},
   filteredListings: {},
   selectedListing: {},
+  numListings: 9,
 };
 
 function reducer(state, action) {
@@ -44,6 +39,11 @@ function reducer(state, action) {
         ...state,
         filteredListings: action.payload,
       };
+    case "jobs/loadMore":
+      return {
+        ...state,
+        numListings: state.numListings + 3,
+      };
     case "rejected":
       return {
         ...state,
@@ -57,7 +57,14 @@ function reducer(state, action) {
 
 function JobListingProvider({ children }) {
   const [
-    { isLoading, error, jobListings, filteredListings, selectedListing },
+    {
+      isLoading,
+      error,
+      jobListings,
+      filteredListings,
+      selectedListing,
+      numListings,
+    },
     dispatch,
   ] = useReducer(reducer, initState);
 
@@ -123,6 +130,7 @@ function JobListingProvider({ children }) {
         error,
         filteredListings,
         selectedListing,
+        numListings,
         dispatch,
         getCurrentListing,
         filterListings,

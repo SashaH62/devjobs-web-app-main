@@ -11,7 +11,7 @@ import ListingFooter from "../components/job-listing/ListingFooter/ListingFooter
 
 function JobPage() {
   const { id } = useParams();
-  const { getCurrentListing, selectedListing, isLoading, error } = useJobs();
+  const { getCurrentListing, isLoading, error } = useJobs();
 
   useEffect(() => {
     getCurrentListing(id);
@@ -19,7 +19,9 @@ function JobPage() {
 
   return (
     <>
-      <Header />
+      <Header>
+        <JobTitleCard />
+      </Header>
       {isLoading && <Loader />}
       {!isLoading && error && (
         <GenericMessage>😣 Something went wrong. </GenericMessage>
@@ -27,7 +29,6 @@ function JobPage() {
       {!isLoading && !error && (
         <>
           <Main>
-            <JobTitleCard />
             <JobDescription />
           </Main>
           <ListingFooter />

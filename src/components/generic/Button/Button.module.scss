@@ -8,9 +8,10 @@
   padding: 1rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
+  width: fit-content;
 }
 
 .primary {
-  color: var(--navColor);
+  color: #fff;
   background-color: var(--accentColor);
 }
