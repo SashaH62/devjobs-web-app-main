@@ -18,9 +18,11 @@ function JobTitleCard() {
       <div className={styles.contentContainer}>
         <div>
           <h2>{company}</h2>
-          <p>scoot.com</p>
+          <p>{website}</p>
         </div>
-        <Button link={apply}>Company Site</Button>
+        <Button link={website} type="secondary">
+          Company Site
+        </Button>
       </div>
     </div>
   );

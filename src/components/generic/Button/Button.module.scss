@@ -9,9 +9,25 @@
   border-radius: 5px;
   cursor: pointer;
   width: fit-content;
+  transition: 0.2s all ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
 .primary {
   color: #fff;
-  background-color: var(--accentColor);
+  background-color: var(--buttonColor);
+
+  &:hover {
+    background-color: var(--buttonHoverColor);
+  }
+}
+
+.secondary {
+  color: var(--buttonSecondaryTextColor);
+  background-color: var(--buttonSecondaryColor);
+
+  &:hover {
+    background-color: var(--buttonSecondaryColorHover);
+  }
 }

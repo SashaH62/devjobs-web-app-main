@@ -19,9 +19,6 @@ function JobPage() {
 
   return (
     <>
-      <Header>
-        <JobTitleCard />
-      </Header>
       {isLoading && <Loader />}
       {!isLoading && error && (
         <GenericMessage>😣 Something went wrong. </GenericMessage>
@@ -29,6 +26,7 @@ function JobPage() {
       {!isLoading && !error && (
         <>
           <Main>
+            <JobTitleCard />
             <JobDescription />
           </Main>
           <ListingFooter />

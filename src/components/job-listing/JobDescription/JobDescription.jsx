@@ -50,11 +50,11 @@ function JobDescription() {
           <h3>What You Will Do</h3>
           {role.content && <p>{role.content}</p>}
           {role.items && (
-            <ul>
+            <ol>
               {role.items.map((item, index) => (
                 <li key={`${company}-role-${index}`}>{item}</li>
               ))}
-            </ul>
+            </ol>
           )}
         </div>
       )}

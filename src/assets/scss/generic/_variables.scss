@@ -21,6 +21,11 @@ $dark_grey: #6e8098;
   --textColor: #6e8098;
   --accentColor: #5964e0;
   --buttonColor: #5964e0;
+  --buttonHoverColor: #939bf4;
+  --buttonSecondaryColor: rgba(89, 100, 224, 0.1);
+  --buttonSecondaryColorHover: rgba(89, 100, 224, 0.35);
+  --buttonSecondaryTextColor: #5964e0;
+  --checkboxBackground: rgba(25, 32, 45, 0.1);
   --navColor: #fff;
 }
 
@@ -30,5 +35,10 @@ $dark_grey: #6e8098;
   --textColor: #6e8098;
   --accentColor: #5964e0;
   --buttonColor: #5964e0;
+  --buttonHoverColor: #939bf4;
+  --buttonSecondaryColor: rgba(89, 100, 224, 0.1);
+  --buttonSecondaryColorHover: rgba(89, 100, 224, 0.35);
+  --buttonSecondaryTextColor: #fff;
+  --checkboxBackground: rgba(255, 255, 255, 0.1);
   --navColor: #19202d;
 }

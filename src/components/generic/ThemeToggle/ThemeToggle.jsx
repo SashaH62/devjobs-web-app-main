@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { setTheme } from "../../../utils/ThemeToggleUtils";
+import styles from "./ThemeToggle.module.scss";
 
 function ThemeToggle() {
   const [themeState, setThemeState] = useState("light");
@@ -20,7 +21,23 @@ function ThemeToggle() {
     }
   }
 
-  return <button onClick={handleToggleTheme}>{themeState}</button>;
+  return (
+    <div
+      className={`${styles.themeToggleContainer} d-flex align-items-center col-gap-10`}
+    >
+      <img src="/assets/desktop/icon-sun.svg" alt="Light Mode" />
+      <input
+        type="checkbox"
+        className={styles.checkbox}
+        id="checkbox"
+        onClick={handleToggleTheme}
+      />
+      <label htmlFor="checkbox" className={styles.checkboxLabel}>
+        <span className={styles.ball}></span>
+      </label>
+      <img src="/assets/desktop/icon-moon.svg" alt="Dark Mode" />
+    </div>
+  );
 }
 
 export default ThemeToggle;

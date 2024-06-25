@@ -7,19 +7,102 @@
   padding: 1rem;
   border-radius: 6px;
   max-height: 80px;
+  margin-bottom: 6rem;
 
-  fieldset {
-    width: fit-content;
+  .checkboxWrapper {
     display: flex;
     align-items: center;
     padding: 0 1rem;
 
-    label {
-      text-wrap: nowrap;
+    input[type="checkbox"] {
+      display: none;
+      visibility: hidden;
     }
 
-    input[type="checkbox"] {
-      width: fit-content;
+    .cbx {
+      margin: auto;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translate3d(0, 0, 0);
+
+        &:first-child {
+          position: relative;
+          width: 18px;
+          height: 18px;
+          border-radius: 3px;
+          transform: scale(1);
+          vertical-align: middle;
+          transition: all 0.2s ease;
+          background-color: var(--checkboxBackground);
+
+          svg {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 16px;
+            stroke-dashoffset: 16px;
+            transition: all 0.3s ease;
+            transition-delay: 0.1s;
+            transform: translate3d(0, 0, 0);
+          }
+
+          &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: var(--accentColor);
+            display: block;
+            transform: scale(0);
+            opacity: 1;
+            border-radius: 50%;
+          }
+        }
+
+        &:last-child {
+          padding-left: 8px;
+          text-wrap: nowrap;
+          color: var(--headingColor);
+          font-weight: 700;
+        }
+      }
+
+      &:hover span:first-child {
+        background-color: var(--buttonSecondaryColorHover);
+      }
     }
+
+    .inpCbx:checked + .cbx span:first-child {
+      background: var(--accentColor);
+      border-color: var(--accentColor);
+      animation: wave-46 0.4s ease;
+    }
+
+    .inpCbx:checked + .cbx span:first-child svg {
+      stroke-dashoffset: 0;
+    }
+
+    .inpCbx:checked + .cbx span:first-child:before {
+      transform: scale(3.5);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+  }
+}
+
+@keyframes wave-46 {
+  50% {
+    transform: scale(0.9);
   }
 }

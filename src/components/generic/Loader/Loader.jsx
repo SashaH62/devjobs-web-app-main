@@ -1,7 +1,9 @@
+import styles from "./Loader.module.scss";
+
 function Loader() {
   return (
-    <div>
-      <p>Loading...</p>
+    <div className={styles.genericLoaderContainer}>
+      <p>Loading... 🚀</p>
     </div>
   );
 }

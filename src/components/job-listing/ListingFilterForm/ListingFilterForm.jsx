@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../generic/Button/Button";
 import GenericTextInput from "../../generic/GenericTextInput/GenericTextInput";
 import styles from "./ListingFilterForm.module.scss";
@@ -12,6 +12,14 @@ function ListingFilterForm() {
     locationQuery: "",
     contractQuery: false,
   });
+
+  useEffect(() => {
+    if (!formFields.generalQuery && !formFields.locationQuery) {
+      dispatch({
+        type: "jobs/reset",
+      });
+    }
+  }, [formFields.generalQuery, formFields.locationQuery]);
 
   function handleSearchSubmit(e) {
     e.preventDefault();
@@ -52,15 +60,24 @@ function ListingFilterForm() {
         value={formFields.locationQuery}
         onChangeEvent={(e) => handleChange(e)}
       />
-      <fieldset>
+      <div className={styles.checkboxWrapper}>
         <input
+          className={styles.inpCbx}
+          id="cbx-46"
           name="contractQuery"
           type="checkbox"
           checked={formFields.contractQuery}
           onChange={(e) => handleChange(e)}
         />
-        <label htmlFor="fullTimeContract">Full Time Only</label>
-      </fieldset>
+        <label className={styles.cbx} htmlFor="cbx-46">
+          <span>
+            <svg width="12px" height="10px" viewBox="0 0 12 10">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+          </span>
+          <span>Full Time Only</span>
+        </label>
+      </div>
       <Button>Search</Button>
     </form>
   );

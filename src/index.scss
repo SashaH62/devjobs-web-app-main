@@ -16,10 +16,51 @@
 html {
   min-height: 100vh;
   background-color: var(--backgroundColor);
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
+}
+
+ol,
+ul {
+  list-style: none;
+  li {
+    margin-bottom: 1rem;
+  }
+}
+
+ul {
+  li {
+    padding-left: 2.25em;
+    text-indent: -2.25em;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background-color: var(--accentColor);
+      margin-right: 2rem;
+      border-radius: 100%;
+      position: relative;
+      top: -3px;
+    }
+  }
+}
+
+ol {
+  li {
+    padding-left: 2.5em;
+    text-indent: -1.25em;
+    &::before {
+      content: counter(list-item);
+      color: var(--accentColor);
+      display: inline-block;
+      min-width: 20px;
+    }
+  }
 }
 
 input,

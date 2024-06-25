@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
 
-function Button({ onClick, link, type = "primary", children }) {
+function Button({ onClick, link, type = "primary", btnClass, children }) {
   const buttonTypeClass = styles[type] || styles.primary;
 
   if (link) {
     return (
       <Link to={link}>
-        <button className={buttonTypeClass} onClick={onClick}>
+        <button
+          className={`${buttonTypeClass} ${btnClass ? btnClass : ""}`}
+          onClick={onClick}
+        >
           {children}
         </button>
       </Link>
@@ -15,7 +18,7 @@ function Button({ onClick, link, type = "primary", children }) {
   }
 
   return (
-    <button className={buttonTypeClass} onClick={onClick}>
+    <button className={`${buttonTypeClass} ${btnClass}`} onClick={onClick}>
       {children}
     </button>
   );

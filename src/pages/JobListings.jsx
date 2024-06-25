@@ -29,25 +29,26 @@ function JobListings() {
 
   return (
     <>
-      <Header>
-        <ListingFilterForm />
-      </Header>
-
       {isLoading && <Loader />}
 
       {!isLoading && error && (
         <GenericMessage>😣 Something went wrong. </GenericMessage>
       )}
 
-      {!isLoading && !error && !filteredListings.length && (
-        <GenericMessage>No results. Try something else. 😕</GenericMessage>
-      )}
-
-      {!isLoading && !error && filteredListings.length && (
+      {!isLoading && !error && (
         <Main>
-          <JobListingGrid />
+          <ListingFilterForm />
+
+          {filteredListings.length > 0 ? (
+            <JobListingGrid />
+          ) : (
+            <GenericMessage>No results. Try something else. 😕</GenericMessage>
+          )}
+
           {numListings < filteredListings.length && (
-            <Button onClick={handleLoadMore}>Load More</Button>
+            <Button onClick={handleLoadMore} btnClass="mx-auto">
+              Load More
+            </Button>
           )}
         </Main>
       )}

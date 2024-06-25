@@ -44,6 +44,12 @@ function reducer(state, action) {
         ...state,
         numListings: state.numListings + 3,
       };
+    case "jobs/reset":
+      return {
+        ...state,
+        numListings: 9,
+        filteredListings: state.jobListings,
+      };
     case "rejected":
       return {
         ...state,
@@ -90,7 +96,11 @@ function JobListingProvider({ children }) {
     }
   }
 
-  function filterListings(generalQuery, locationQuery, contractQuery) {
+  function filterListings(
+    generalQuery = "",
+    locationQuery = "",
+    contractQuery = false
+  ) {
     if (!generalQuery && !locationQuery && !contractQuery) {
       return jobListings;
     }

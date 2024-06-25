@@ -11,7 +11,6 @@ function Header({ children }) {
         </NavLink>
         <ThemeToggle />
       </nav>
-      <div className={styles.headerChildContainer}>{children}</div>
     </header>
   );
 }
